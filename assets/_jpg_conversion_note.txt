@@ -1,1 +1,0 @@
-All visual assets use .jpg filenames. Binary replacements are handled separately from naming metadata.
