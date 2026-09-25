@@ -8,15 +8,19 @@
 - `cards/`：卡牌插画
 - `icons/`：后续 UI 图标
 
-建议文件名：
-- characters/zheng_success.png
-- characters/dutch_commander.png
-- event/event_banner.png
-- battlefields/luermen.png
-- battlefields/anping.png
-- battlefields/beixianwei.png
-- battlefields/tainan.png
-- battlefields/zeelandia.png
-- cards/zheng_card.png
-- cards/dutch_card.png
-- cards/tactic_card.png
+图片副档统一使用 JPG。
+
+固定文件名：
+- characters/zheng_success.jpg
+- characters/dutch_commander.jpg
+- event/event_banner.jpg
+- battlefields/luermen.jpg
+- battlefields/anping.jpg
+- battlefields/beixianwei.jpg
+- battlefields/tainan.jpg
+- battlefields/zeelandia.jpg
+- cards/zheng_card.jpg
+- cards/dutch_card.jpg
+- cards/tactic_card.jpg
+
+后续 `icons/` 内新增图片也统一使用 `.jpg`。
