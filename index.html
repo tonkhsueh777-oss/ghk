@@ -3,155 +3,69 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>郑成功收复台湾｜V10.3 玩法实验版</title>
+<title>郑成功收复台湾｜V11 视觉试玩版</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<div class="app">
-<section id="selectScreen" class="screen active hero">
-  <div class="startBox">
-    <h1>《郑成功收复台湾》V10.3 玩法实验版</h1>
-    <p class="lead">五战场战役版。派兵不会得分；只有打赢战场才拿到 1 个战役点。<b>先攻下 3 个战场就获胜。</b></p>
-    <div class="factions">
-      <div class="faction zheng" onclick="startGame('zheng')"><h3>郑成功军</h3><p>偏主动进攻。</p><ul><li>鹿耳门舰队有优势</li><li>安平登陆有优势</li><li>火炮攻热兰遮城有优势</li></ul></div>
-      <div class="faction dutch" onclick="startGame('dutch')"><h3>荷兰守军</h3><p>偏防守反击。</p><ul><li>热兰遮城有 +2 城防</li><li>舰队在鹿耳门有优势</li><li>战术偏固守与压制</li></ul></div>
+<div class="app-shell">
+<section id="startScreen" class="start-screen">
+  <div class="start-card">
+    <div class="start-title">《郑成功收复台湾》</div>
+    <div class="start-sub">V11 视觉试玩版 · 五战场随机战役</div>
+    <div class="start-rule">先攻下 <b>3</b> 个战场获胜。单方 3 兵无抵抗占领；双方合计 5 兵触发正式决战。</div>
+    <div class="faction-select">
+      <button class="faction-choice zheng" onclick="startGame('zheng')"><div class="start-portrait sprite" data-sprite="zheng"></div><span><b>郑成功军</b><small>主动进攻 · 登陆与火炮优势</small></span></button>
+      <button class="faction-choice dutch" onclick="startGame('dutch')"><div class="start-portrait sprite" data-sprite="dutch"></div><span><b>荷兰守军</b><small>防守反击 · 城防与海军优势</small></span></button>
     </div>
-    <div class="ruleStrip"><b>最重要的规则：</b>单方驻军达到 3 支，对手完全没来 → 无抵抗占领；双方都有兵，总数达到 5 支 → 正式决战；决战时还要选择“强攻 / 固守 / 奇袭”。</div>
   </div>
 </section>
 
-<section id="gameScreen" class="screen">
-  <div class="topbar">
-    <div class="title"><h1>郑成功收复台湾｜V10.3 玩法实验版</h1><p id="roleText"></p></div>
-    <div class="topActions"><button class="btn" onclick="showRules()">怎么玩？</button><button class="btn" onclick="showDecks()">牌组一览</button><div id="roundBadge" class="badge"></div></div>
-  </div>
-  <div id="guide" class="guide"></div>
-  <div class="layout">
-    <aside class="panel left">
-      <h3>你的战果</h3>
-      <div class="statusRow"><span id="youName"></span><span id="youDeck"></span></div>
-      <div id="youScore" class="score red">0 / 3</div>
-      <div class="small">已攻下战场｜先到 3 获胜</div>
-      <div class="tip"><b>得分：</b>驻军和争夺都不算分。只有战场结算胜利，才 +1 并永久入袋。</div>
-      <div class="tip"><b>无人防守：</b>你独自在一个战场达到 3 支正面部队，立即拿下。</div>
-      <div class="tip"><b>正式决战：</b>双方都有兵，正面部队合计达到 5 支，立即进入应战和战法选择。</div>
-      <div class="specialBox"><div class="specialTitle">你的王牌</div><div id="playerTrumpName" class="small"></div><div id="playerTrumpState" class="specialState"></div><button id="trumpBtn" class="btn special" onclick="activateTrumpMode()" style="margin-top:6px">发动王牌</button></div>
-      <div class="specialBox"><div class="specialTitle">你的战役奖励</div><div id="rewardState" class="specialState"></div><button id="freeMoveBtn" class="btn free" onclick="activateFreeMove()" style="margin-top:6px;display:none">使用免费调动</button></div>
-      <div class="specialBox"><div class="specialTitle">你的伏兵</div><div id="playerAmbushState" class="specialState"></div></div>
-      <button class="btn" onclick="resetGame()">重新开始</button>
-    </aside>
+<section id="gameScreen" class="game-screen hidden">
+<header class="topbar">
+  <div class="brand"><div class="brand-title">郑成功收复台湾</div><div class="brand-sub">V11 视觉试玩版</div></div>
+  <div id="flow" class="flow"></div>
+  <div class="top-actions"><button class="ghost-btn" onclick="showRules()">怎么玩</button><button class="ghost-btn" onclick="showDecks()">牌组一览</button><button class="gold-btn" onclick="resetGame()">重新开始</button></div>
+</header>
 
-    <main class="center">
-      <div class="panel turnbox">
-        <div><div id="turnText" class="turntext"></div><div id="phaseText" class="phase"></div></div>
-        <div style="display:flex;gap:7px;align-items:center"><div class="apBox">行动点 <b id="apValue"></b></div><button id="endBtn" class="btn gold" onclick="endPlayerTurn()">结束回合</button></div>
-      </div>
-      <div id="message" class="message"></div>
-      <div id="eventBar" class="eventBar quiet"></div>
-      <div id="battlefields" class="battlefields"></div>
-      <div class="panel">
-        <div class="handHeader"><div><h3>你的手牌</h3><div id="handCount" class="small"></div></div><div id="selectedHint" class="small"></div></div>
-        <div id="hand" class="hand"></div>
-        <div class="actions">
-          <button id="playBtn" class="btn primary" onclick="playSelected()">打出这张牌</button>
-          <button id="ambushBtn" class="btn ambush" onclick="placePlayerAmbush()">设为伏兵</button>
-          <button id="moveBtn" class="btn move" onclick="activateMoveMode()">调动部队</button>
-          <button id="discardBtn" class="btn" onclick="discardSelected()">弃牌换1张</button>
-        </div>
-      </div>
-    </main>
+<main class="game-grid">
+  <aside class="side-panel player-panel">
+    <div class="panel-label">你的阵营</div>
+    <div class="hero-card"><div id="playerHero" class="hero-img sprite"></div><div class="hero-gradient"></div><div class="hero-copy"><div id="playerName" class="hero-name"></div><div id="playerDesc" class="hero-desc"></div><div class="score-line"><strong id="playerScore">0 / 3</strong><span>已攻下战场</span></div></div></div>
+    <div class="info-card"><h3>你的牌库</h3><p id="playerPiles"></p></div>
+    <div class="info-card"><div class="icon-title"><span class="round-icon">★</span><div><h3>你的王牌</h3><p id="playerTrumpText"></p><button id="trumpBtn" class="mini-btn" onclick="toggleTrump()">发动王牌</button></div></div></div>
+    <div class="info-card"><div class="icon-title"><span class="round-icon">✦</span><div><h3>你的战役奖励</h3><p id="rewardText"></p><button id="freeMoveBtn" class="mini-btn hidden" onclick="toggleFreeMove()">使用免费调动</button></div></div></div>
+    <div class="info-card"><div class="icon-title"><span class="round-icon">伏</span><div><h3>你的伏兵</h3><p id="ambushText"></p></div></div></div>
+  </aside>
 
-    <aside class="panel right">
-      <h3>AI 战果</h3>
-      <div class="statusRow"><span id="aiName"></span><span id="aiHand"></span></div>
-      <div id="aiScore" class="score blue">0 / 3</div>
-      <div class="small">已攻下战场</div>
-      <div class="specialBox"><div class="specialTitle">AI 王牌</div><div id="aiTrumpState" class="specialState"></div></div>
-      <div class="specialBox"><div class="specialTitle">AI 伏兵</div><div id="aiAmbushState" class="specialState"></div></div>
-      <hr style="border-color:#2a3a42"><h3>战斗 / 行动记录</h3><div id="log" class="log"></div>
-    </aside>
-  </div>
+  <section class="center-stage">
+    <section class="turn-strip"><div><div id="roundText" class="turn-kicker"></div><h2 id="turnText"></h2><p id="phaseText"></p></div><div class="turn-actions"><div class="ap-box">行动点 <strong id="apText"></strong></div><button id="endTurnBtn" class="dark-btn" onclick="endPlayerTurn()">结束回合</button></div></section>
+    <div id="message" class="message-box"></div>
+    <section id="eventBanner" class="event-banner"><div class="event-art sprite" data-sprite="event"></div><div class="event-overlay"></div><div class="event-copy"><div class="event-label">公共事件</div><h2 id="eventName"></h2><p id="eventText"></p></div><div class="event-rounds">3 / 6 / 9</div></section>
+    <section class="battle-section"><div class="section-head"><div><h2>五大战场</h2><p>每局重新随机排列；调动只能前往当前画面相邻战场。</p></div><div class="route-legend">← 相邻调动 →</div></div><div id="battlefieldGrid" class="battlefield-grid"></div></section>
+    <section class="hand-section"><div class="section-head"><div><h2>你的手牌</h2><p>开局4张，每回合抽2张，手牌上限6张。</p></div><div id="handCount" class="hand-counter"></div></div><div id="handGrid" class="hand-grid"></div><div class="action-row"><button id="playBtn" class="action-btn primary" onclick="playSelected()">打出这张牌</button><button id="ambushBtn" class="action-btn" onclick="setAmbush()"><span class="round-icon">伏</span>设为伏兵</button><button id="moveBtn" class="action-btn" onclick="toggleMove()">调动部队</button><button id="discardBtn" class="action-btn" onclick="discardSelected()">弃牌换1张</button></div></section>
+  </section>
+
+  <aside class="side-panel ai-panel">
+    <div class="panel-label">AI 对手</div>
+    <div class="hero-card compact"><div id="aiHero" class="hero-img sprite"></div><div class="hero-gradient"></div><div class="hero-copy"><div id="aiName" class="hero-name"></div><div id="aiDesc" class="hero-desc"></div><div class="score-line"><strong id="aiScore">0 / 3</strong><span>已攻下战场</span></div></div></div>
+    <div class="info-card"><h3>AI 状态</h3><p id="aiPiles"></p><p id="aiTrumpText"></p><p id="aiAmbushText"></p></div>
+    <div class="log-card"><div class="log-head"><h3>战斗 / 行动记录</h3><span>实时</span></div><div id="logList" class="log-list"></div></div>
+  </aside>
+</main>
 </section>
 </div>
 
-<div id="rulesModal" class="modal"><div class="modalbox">
-  <h2>V10 规则</h2>
-  <p><b>五大战场：</b>鹿耳门、安平、北线尾、台南城、热兰遮城。每个战场 1 点，先拿 3 点获胜。</p>
-  <p><b>驻军：</b>只有一方在场时，达到 3 支正面部队 → 无抵抗占领。</p>
-  <p><b>争夺：</b>双方都有部队时，总数达到 5 支 → 正式决战。</p>
-  <p><b>正式决战：</b>先给未触发第5支的一方一次免费应战，然后双方秘密选择战法：</p>
-  <div class="ruleStrip">强攻 克 固守｜固守 克 奇袭｜奇袭 克 强攻｜克制成功 +2 战力</div>
-  <p><b>胜利后：</b>得到 1 个战役点、获得该战场奖励、战场永久封锁。</p>
-  <p><b>战场奖励：</b><br>鹿耳门：立即抽2张；安平：下回合3行动点；北线尾：免费调动1次；台南城：获得1张部队牌；热兰遮城：获得一次决战+2军械标记。</p>
-  <p><b>手牌节奏：</b>开局4张；每回合开始抽2张；手牌上限6张。这样通常是“用2张 → 下回合补2张”，减少囤牌。</p>
-  <p><b>最多10回合：</b>第10回合结束后，仍有部队的战场强制结算。若极端情况下仍 2:2 且第五战场无人争夺，则比较双方手牌中的部队总战力。</p>
-  <button class="btn primary" onclick="hideRules()">知道了</button>
-</div></div>
+<div id="rulesModal" class="modal"><div class="modalbox"><h2>V11 试玩规则</h2><p>五个战场每局随机排列。每个战场 1 点，先拿下 3 个获胜。</p><p><b>无人防守：</b>单方正面部队达到3支，直接占领。</p><p><b>正式决战：</b>双方都有部队，合计达到5支后触发。未触发第5支的一方先有一次免费应战，再选择战法。</p><div class="rule-strip">强攻 克 固守｜固守 克 奇袭｜奇袭 克 强攻｜克制 +2</div><p>伏兵不计入3/5支触发数；第3/6/9回合翻公共事件；最多10回合。</p><button class="gold-btn" onclick="hideModal('rulesModal')">知道了</button></div></div>
+<div id="deckModal" class="modal"><div class="modalbox"><h2>牌组一览</h2><div id="deckContent"></div><button class="gold-btn" onclick="hideModal('deckModal')">关闭</button></div></div>
+<div id="reactionModal" class="modal"><div class="modalbox"><h2>决战前：免费应战</h2><p id="reactionText"></p><div id="reactionOptions"></div><button class="ghost-btn" onclick="skipReaction()">不应战，进入战法选择</button></div></div>
+<div id="battleModal" class="modal"><div class="modalbox"><div id="battleChoice"><h2 id="battleTitle">选择决战战法</h2><div class="choice-grid"><button onclick="chooseBattleTactic('assault')"><b>强攻</b><small>克固守</small></button><button onclick="chooseBattleTactic('defend')"><b>固守</b><small>克奇袭</small></button><button onclick="chooseBattleTactic('raid')"><b>奇袭</b><small>克强攻</small></button></div><label id="arsenalLabel" class="arsenal-label"><input id="arsenalCheck" type="checkbox"> 使用军械 +2 标记</label></div><div id="battleResult" class="hidden"></div></div></div>
+<div id="resultModal" class="modal"><div class="modalbox result-box"><h2 id="resultTitle"></h2><div id="resultScore" class="result-score"></div><p id="resultText"></p><button class="gold-btn" onclick="resetGame()">再玩一局</button></div></div>
 
-<div id="reactionModal" class="modal"><div class="modalbox">
-  <h2>⚔ 决战前：应战机会</h2>
-  <p id="reactionText" class="lead"></p>
-  <div id="reactionList" class="reactionList"></div>
-  <button class="btn" onclick="skipReaction()">不出牌，进入战法选择</button>
-</div></div>
-
-<div id="battleModal" class="modal"><div class="modalbox">
-  <div id="battleChoose">
-    <h2 id="battleTitle">选择决战战法</h2>
-    <p class="lead">AI 已经秘密选择。你选一种战法，再同时揭晓。</p>
-    <div class="choiceGrid">
-      <button class="choice" onclick="chooseBattleTactic('assault')"><b>强攻</b><span>克制：固守</span></button>
-      <button class="choice" onclick="chooseBattleTactic('defend')"><b>固守</b><span>克制：奇袭</span></button>
-      <button class="choice" onclick="chooseBattleTactic('raid')"><b>奇袭</b><span>克制：强攻</span></button>
-    </div>
-    <div id="arsenalBox" class="arsenalToggle" style="display:none"><input id="arsenalCheck" type="checkbox"><label for="arsenalCheck">使用“军械 +2”标记（本次决战 +2，用后消失）</label></div>
-  </div>
-  <div id="battleResult" style="display:none"></div>
-</div></div>
-
-<div id="deckModal" class="modal"><div class="modalbox">
-  <h2>V10.1 试玩牌组</h2>
-  <p class="lead">现在先用这套牌测试“好不好玩”。每方主牌 17 张：12 张部队 + 5 张战术；王牌独立放在牌库外。</p>
-  <h3>郑成功军｜12 部队 + 5 战术</h3>
-  <div class="battleResult">
-    <b>义勇军 ×4</b>｜战力1｜步兵，台南城额外 +1<br>
-    <b>精锐步兵 ×3</b>｜战力2｜北线尾额外 +1；同时属于步兵，可享台南城地形<br>
-    <b>水师舰队 ×3</b>｜战力3｜舰队，鹿耳门额外 +1<br>
-    <b>火炮营 ×2</b>｜战力3｜火炮，热兰遮城额外 +1<br><br>
-    <b>北线突击 ×1</b>｜仅北线尾，己方 +2<br>
-    <b>强行登陆 ×1</b>｜安平郑军 +2<br>
-    <b>炮火轰城 ×1</b>｜热兰遮城荷军 -2<br>
-    <b>调虎离山 ×1</b>｜移除敌方基础战力最低的1支部队<br>
-    <b>增援 ×1</b>｜本战场临时 +1 战力，不算正面部队
-  </div>
-  <h3 style="margin-top:14px">荷兰守军｜12 部队 + 5 战术</h3>
-  <div class="battleResult">
-    <b>守备步兵 ×4</b>｜战力2｜步兵，台南城额外 +1<br>
-    <b>火枪队 ×3</b>｜战力2｜北线尾额外 +1<br>
-    <b>荷兰舰队 ×3</b>｜战力3｜舰队，鹿耳门额外 +1<br>
-    <b>城防炮台 ×2</b>｜战力3｜热兰遮城另有固定城防 +2<br><br>
-    <b>城墙加固 ×1</b>｜己方 +2<br>
-    <b>北线阻击 ×1</b>｜仅北线尾，敌军 -2<br>
-    <b>海上封锁 ×1</b>｜鹿耳门郑军 -2<br>
-    <b>反击 ×1</b>｜争夺中荷军 +3<br>
-    <b>增援守军 ×1</b>｜本战场临时 +1 战力，不算正面部队
-  </div>
-  <div class="ruleStrip" style="margin-top:14px"><b>王牌：</b>国姓爷亲征＝郑军本次决战总共 +3 战力；总督死守＝荷军 +3，并清除荷军受到的战术压制。两张王牌都不进入普通牌库。</div>
-  <button class="btn primary" style="margin-top:12px" onclick="hideDecks()">关闭</button>
-</div></div>
-
-<div id="resultModal" class="modal"><div class="modalbox">
-  <h2 id="resultTitle"></h2><div id="resultScore" class="bigResult"></div><p id="resultText" class="lead"></p>
-  <button class="btn primary" onclick="resetGame()">再玩一局</button>
-</div></div>
-
-<script src="game-core.js"></script>
-<script src="game-1.js"></script>
-<script src="game-2.js"></script>
-<script src="game-3.js"></script>
-<script src="game-4.js"></script>
-<script src="game-5.js"></script>
-<script src="game-6.js"></script>
-<script src="game-7.js"></script>
+<script src="sprite-data-1.js"></script>
+<script src="sprite-data-2.js"></script>
+<script src="sprite-data-3.js"></script>
+<script src="sprite-data-4.js"></script>
+<script src="engine.js"></script>
+<script src="app.js"></script>
 </body>
 </html>
