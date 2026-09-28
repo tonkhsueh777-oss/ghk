@@ -8,19 +8,19 @@
 - `cards/`：卡牌插画
 - `icons/`：后续 UI 图标
 
-图片副档统一使用 JPEG，也就是 `.jpeg`。
+图片副档统一使用 WebP，也就是 `.webp`。
 
 固定文件名：
-- characters/zheng_success.jpeg
-- characters/dutch_commander.jpeg
-- event/event_banner.jpeg
-- battlefields/luermen.jpeg
-- battlefields/anping.jpeg
-- battlefields/beixianwei.jpeg
-- battlefields/tainan.jpeg
-- battlefields/zeelandia.jpeg
-- cards/zheng_card.jpeg
-- cards/dutch_card.jpeg
-- cards/tactic_card.jpeg
+- characters/zheng_success.webp
+- characters/dutch_commander.webp
+- event/event_banner.webp
+- battlefields/luermen.webp
+- battlefields/anping.webp
+- battlefields/beixianwei.webp
+- battlefields/tainan.webp
+- battlefields/zeelandia.webp
+- cards/zheng_card.webp
+- cards/dutch_card.webp
+- cards/tactic_card.webp
 
-后续 `icons/` 内新增图片也统一使用 `.jpeg`。
+后续 `icons/` 内新增图片也统一使用 `.webp`。
