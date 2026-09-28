@@ -1,0 +1,31 @@
+《郑成功收复台湾》V2 母版裁切素材命名清单
+格式：全部 WebP
+上传位置：assets/ui/
+原则：文件名必须完全一致；图片不要烤入网页文字。
+
+01 top_bar_bg.webp            1448x98
+02 side_panel_left.webp        236x872
+03 side_panel_right.webp       240x872
+04 turn_banner_bg.webp         910x118
+05 event_panel_bg.webp         910x133
+06 battlefield_section_bg.webp 910x347
+07 battlefield_card_bg.webp    170x340
+08 action_bar_bg.webp          910x66
+09 hand_panel_bg.webp          910x250
+10 player_portrait_frame.webp  226x264
+11 ai_portrait_frame.webp      228x264
+12 player_name_plate.webp      222x46
+13 ai_name_plate.webp          228x46
+14 ap_box_bg.webp              88x51
+15 end_turn_btn_bg.webp        159x51
+16 flow_step_bg.webp           100x53
+17 top_btn_blue.webp           69x48
+18 top_btn_gold.webp           72x48
+19 top_btn_red.webp            79x48
+20 action_btn_red.webp         220x55
+21 action_btn_blue.webp        214x55
+22 action_btn_gold.webp        207x55
+23 action_btn_blue2.webp       218x55
+24 log_panel_bg.webp           229x293
+
+第25张不是网页切片：请把完整母版另外保存为 master_reference.webp（1448x1086），放到 assets/reference/，只用于对位与设计参考，网页不直接读取。
