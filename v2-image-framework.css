@@ -1,0 +1,38 @@
+/* V2 image framework — WebP skin layer. Gameplay layout/logic unchanged. */
+html,body{background:#061018 url('assets/ui/page_bg.webp') center top/cover fixed no-repeat!important}
+body:before,body:after{opacity:.18!important}
+
+.topbar{background-image:linear-gradient(rgba(4,12,17,.12),rgba(4,12,17,.12)),url('assets/ui/top_bar_bg.webp')!important;background-color:transparent!important;background-size:100% 100%!important;background-repeat:no-repeat!important;background-position:center!important;border-color:transparent!important;box-shadow:0 8px 22px #0008!important}
+.topbar:after{display:none!important}
+
+.player-panel{background-image:linear-gradient(rgba(5,14,19,.12),rgba(5,14,19,.22)),url('assets/ui/side_panel_left.webp')!important;background-size:100% 100%!important;background-repeat:no-repeat!important;background-position:center!important;background-color:transparent!important;border-color:transparent!important}
+.ai-panel{background-image:linear-gradient(rgba(5,14,19,.12),rgba(5,14,19,.22)),url('assets/ui/side_panel_right.webp')!important;background-size:100% 100%!important;background-repeat:no-repeat!important;background-position:center!important;background-color:transparent!important;border-color:transparent!important}
+.side-panel:before{display:none!important}
+
+.turn-strip{background-image:linear-gradient(rgba(255,241,205,.08),rgba(71,43,18,.08)),url('assets/ui/turn_banner_bg.webp')!important;background-size:100% 100%!important;background-repeat:no-repeat!important;background-position:center!important;border-color:transparent!important;box-shadow:0 5px 16px #0007!important}
+
+.event-banner{background-image:linear-gradient(90deg,rgba(44,10,8,.60),rgba(12,18,22,.10) 55%,rgba(4,10,14,.30)),url('assets/ui/event_panel_bg.webp')!important;background-size:100% 100%!important;background-repeat:no-repeat!important;background-position:center!important}
+.event-banner .event-art{opacity:0!important}
+.event-overlay{background:linear-gradient(90deg,rgba(43,10,8,.70),rgba(66,20,12,.22) 46%,rgba(4,13,19,0) 74%,rgba(5,13,18,.25))!important}
+
+.battle-section{background-image:linear-gradient(rgba(3,11,15,.58),rgba(3,11,15,.68)),url('assets/ui/battlefield_section_bg.webp')!important;background-size:100% 100%!important;background-repeat:no-repeat!important;background-position:center!important;background-color:transparent!important;border-color:transparent!important}
+.battle-section:before{display:none!important}
+
+.battle-card{background-image:url('assets/ui/battlefield_card_bg.webp')!important;background-size:100% 100%!important;background-repeat:no-repeat!important;background-position:center!important;background-color:#ead7ae!important;border-color:#9e6f2d!important;box-shadow:0 5px 14px rgba(0,0,0,.38)!important}
+.battle-card:hover,.battle-card.selected{border-color:#f0c35f!important;box-shadow:0 8px 22px #0009,0 0 0 2px #f0c35f55!important}
+
+.center-command-bar{background-image:linear-gradient(90deg,rgba(5,14,19,.26),rgba(5,14,19,.12)),url('assets/ui/action_bar_bg.webp')!important;background-size:100% 100%!important;background-repeat:no-repeat!important;background-position:center!important;background-color:transparent!important;border-color:#8d642b!important}
+.center-command-bar:before{display:none!important}
+
+.hand-section{background-image:linear-gradient(rgba(4,12,17,.36),rgba(4,12,17,.42)),url('assets/ui/hand_panel_bg.webp')!important;background-size:100% 100%!important;background-repeat:no-repeat!important;background-position:center!important;background-color:transparent!important;border-color:#8d642b!important}
+.hand-section:before{display:none!important}
+
+/* Disable old SVG chrome so this pass visibly uses the uploaded WebP set. */
+.log-card{background:#081720!important;border-color:#40515d!important}
+.ap-box.large{background:linear-gradient(180deg,rgba(51,35,14,.94),rgba(24,17,8,.94))!important;border:1px solid #a87631!important}
+.end-turn-prominent{background:linear-gradient(180deg,#a73526,#65170f)!important;border:1px solid #d29a45!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.16),0 5px 12px #0007!important}
+.point-tag{background:#f2dfb9!important;border:1px solid #a67531!important;color:#593714!important}
+
+/* Keep content readable over image skins. */
+.info-card{background:rgba(5,17,24,.82)!important;backdrop-filter:blur(1px);border-color:#40515d!important}
+.section-head h2,.section-head p,.route-legend{position:relative;z-index:2}
