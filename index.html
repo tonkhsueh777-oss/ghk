@@ -38,10 +38,11 @@
   </aside>
 
   <section class="center-stage">
-    <section class="turn-strip"><div><div id="roundText" class="turn-kicker"></div><h2 id="turnText"></h2><p id="phaseText"></p></div><div class="turn-actions"><div class="ap-box">行动点 <strong id="apText"></strong></div><button id="endTurnBtn" class="dark-btn" onclick="endPlayerTurn()">结束回合</button></div></section>
+    <section class="turn-strip"><div><div id="roundText" class="turn-kicker"></div><h2 id="turnText"></h2><p id="phaseText"></p></div><div class="turn-strip-note">行动点与结束回合已移到战场下方操作栏</div></section>
     <div id="message" class="message-box"></div>
     <section id="eventBanner" class="event-banner"><div class="event-art sprite" data-sprite="event"></div><div class="event-overlay"></div><div class="event-copy"><div class="event-label">公共事件</div><h2 id="eventName"></h2><p id="eventText"></p></div><div class="event-rounds">3 / 6 / 9</div></section>
     <section class="battle-section"><div class="section-head"><div><h2>五大战场</h2><p>每局重新随机排列；调动只能前往当前画面相邻战场。</p></div><div class="route-legend">← 相邻调动 →</div></div><div id="battlefieldGrid" class="battlefield-grid"></div></section>
+    <section class="center-command-bar"><div class="command-tip">请先选择战场，再从下方手牌与操作按钮执行行动。</div><div class="turn-actions action-focus"><div class="ap-box large">行动点 <strong id="apText"></strong></div><button id="endTurnBtn" class="dark-btn end-turn-prominent" onclick="endPlayerTurn()">结束回合</button></div></section>
     <section class="hand-section"><div class="section-head"><div><h2>你的手牌</h2><p>开局4张，每回合抽2张，手牌上限6张。</p></div><div id="handCount" class="hand-counter"></div></div><div id="handGrid" class="hand-grid"></div><div class="action-row"><button id="playBtn" class="action-btn primary" onclick="playSelected()">打出这张牌</button><button id="ambushBtn" class="action-btn" onclick="setAmbush()"><span class="round-icon">伏</span>设为伏兵</button><button id="moveBtn" class="action-btn" onclick="toggleMove()">调动部队</button><button id="discardBtn" class="action-btn" onclick="discardSelected()">弃牌换1张</button></div></section>
   </section>
 
