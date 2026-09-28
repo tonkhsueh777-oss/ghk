@@ -1,0 +1,20 @@
+/* V2 SVG framework pass — vector chrome only; gameplay layout/logic unchanged. */
+.topbar{background-image:url('assets/ui/top_bar_bg.svg')!important;background-color:transparent!important;background-size:100% 100%!important;background-repeat:no-repeat!important;border-color:transparent!important}
+.topbar:after{display:none!important}
+.player-panel{background-image:url('assets/ui/side_panel_left.svg')!important;background-size:100% 100%!important;background-repeat:no-repeat!important;background-color:transparent!important;border-color:transparent!important}
+.ai-panel{background-image:url('assets/ui/side_panel_right.svg')!important;background-size:100% 100%!important;background-repeat:no-repeat!important;background-color:transparent!important;border-color:transparent!important}
+.side-panel:before{display:none!important}
+.turn-strip{background-image:url('assets/ui/turn_banner_frame.svg'),url('assets/ui/parchment.svg')!important;background-size:100% 100%,100% 100%!important;background-repeat:no-repeat!important;background-position:center!important}
+.battle-section{background-image:url('assets/ui/battlefield_section_bg.svg')!important;background-size:100% 100%!important;background-repeat:no-repeat!important;background-color:transparent!important;border-color:transparent!important}
+.battle-section:before{display:none!important}
+.battle-card{background-image:url('assets/ui/battlefield_card_bg.svg')!important;background-size:100% 100%!important;background-repeat:no-repeat!important;background-color:transparent!important;border-color:transparent!important;box-shadow:0 4px 12px rgba(0,0,0,.28)!important}
+.battle-card:hover,.battle-card.selected{box-shadow:0 7px 19px #0008,0 0 0 2px #f0c35f66!important}
+.hand-section{background-image:url('assets/ui/hand_panel_bg.svg')!important;background-size:100% 100%!important;background-repeat:no-repeat!important;background-color:transparent!important;border-color:transparent!important}
+.hand-section:before{display:none!important}
+.log-card{background-image:url('assets/ui/log_panel_bg.svg')!important;background-size:100% 100%!important;background-repeat:no-repeat!important;background-color:transparent!important;border-color:transparent!important}
+.ap-box.large{background-image:url('assets/ui/ap_box_bg.svg')!important;background-size:100% 100%!important;background-repeat:no-repeat!important;background-color:transparent!important;border-color:transparent!important}
+.end-turn-prominent{background-image:url('assets/ui/end_turn_btn_bg.svg')!important;background-size:100% 100%!important;background-repeat:no-repeat!important;background-color:transparent!important;border:0!important}
+.point-tag{background-image:url('assets/ui/battle_badge_bg.svg')!important;background-size:100% 100%!important;background-repeat:no-repeat!important;background-color:transparent!important;border-color:transparent!important;padding:4px 8px!important}
+/* reserve the four ornamental corners for later WebP background integration */
+.center-command-bar{border-color:#8d642b!important}
+.info-card{border-color:#40515d!important}
